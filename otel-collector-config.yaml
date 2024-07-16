@@ -16,11 +16,11 @@ exporters:
   logging:
 
   zipkin:
-    endpoint: "http://zipkin.railway.internal:9411/api/v2/spans"
+    endpoint: "http://valiant-enjoyment.railway.internal:9411/api/v2/spans"
     format: proto
 
   otlp/jaeger:
-    endpoint: jaeger.railway.internal:4317
+    endpoint: overflowing-acceptance.railway.internal:4317
     tls:
       insecure: true
 
