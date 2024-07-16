@@ -1,0 +1,22 @@
+version: "3.9"
+name: jaeger
+services:
+  # ------------------- Jaeger ----------------------
+  jaeger:
+    container_name: jaeger-digitalkin
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: unless-stopped
+    ports:
+      - 16686:16686
+      - 4317:4317
+    networks:
+      - default
+# ------------------- Networks ----------------------
+networks:
+  default:
+    driver: bridge
+# ------------------- Storage ----------------------
+volumes:
+  jaeger-data:
