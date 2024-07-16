@@ -1,6 +1,14 @@
-FROM jaegertracing/all-in-one:latest
+FROM nginx:stable-alpine
 
-ENV COLLECTOR_OTLP_ENABLED=true
-ENV COLLECTOR_ZIPKIN_HOST_PORT=:9411
+# Copy the jaeger binary over
+COPY --from=jaegertracing/all-in-one:latest /go/bin/all-in-one-linux /usr/sbin/all-in-one-linux
 
-EXPOSE 5775/udp 6831/udp 6832/udp 5778 16686 14250 14268 14269 4317 4318 9411
+# Copy our config/scripts over
+COPY ./nginx_jaeger_proxy.conf /etc/nginx/conf.d/jaeger_proxy.conf
+COPY ./entrypoint.sh /docker_entrypoint.sh
+RUN chmod +x /docker_entrypoint.sh 
+
+# Setup for execution
+# Note: additional args are transparently passed to jaeger
+ENTRYPOINT [ "/docker_entrypoint.sh" ]
+CMD []
