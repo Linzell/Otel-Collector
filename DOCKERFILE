@@ -1,0 +1,11 @@
+# Use the official Jaeger all-in-one image as the base
+FROM jaegertracing/all-in-one:latest
+
+# Set environment variables
+ENV COLLECTOR_OTLP_ENABLED=true
+
+# Expose the necessary ports
+EXPOSE 5775/udp 6831/udp 6832/udp 5778 16686 14250 14268 14269 4317 4318 9411
+
+# Set the default command to run the all-in-one binary
+CMD ["/go/bin/all-in-one-linux"]
