@@ -1,14 +1,7 @@
-FROM nginx:stable-alpine
+FROM otel/opentelemetry-collector:latest
 
-# Copy the jaeger binary over
-COPY --from=jaegertracing/all-in-one:latest /go/bin/all-in-one-linux /usr/sbin/all-in-one-linux
+COPY otel-collector-config.yaml /etc/otel-collector-config.yaml
 
-# Copy our config/scripts over
-COPY ./nginx_jaeger_proxy.conf /etc/nginx/conf.d/jaeger_proxy.conf
-COPY ./entrypoint.sh /docker_entrypoint.sh
-RUN chmod +x /docker_entrypoint.sh 
+EXPOSE 1888 8888 8889 13133 4317 4318 55679
 
-# Setup for execution
-# Note: additional args are transparently passed to jaeger
-ENTRYPOINT [ "/docker_entrypoint.sh" ]
-CMD []
+CMD ["--config=/etc/otel-collector-config.yaml"]
