@@ -3,15 +3,6 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
-        read_buffer_size: 524288  # 512 KiB in bytes
-        write_buffer_size: 524288 # 512 KiB in bytes
-        keepalive:
-          server_parameters:
-            max_connection_idle: 15s
-            max_connection_age: 30s
-            max_connection_age_grace: 5s
-            time: 5s
-            timeout: 20s
       http:
         endpoint: 0.0.0.0:4318
 
@@ -59,3 +50,7 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, prometheus, debug]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, debug]
