@@ -3,6 +3,12 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
+        tonic:
+          keepalive:
+            server_timeout: 20s
+            server_permit_without_stream: true
+          max_receive_message_len: 4194304 # 4 MB
+          max_concurrent_streams: 100
       http:
         endpoint: 0.0.0.0:4318
 
