@@ -3,8 +3,8 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
-        read_buffer_size: 512 KiB
-        write_buffer_size: 512 KiB
+        read_buffer_size: 524288  # 512 KiB in bytes
+        write_buffer_size: 524288 # 512 KiB in bytes
         keepalive:
           server_parameters:
             max_connection_idle: 15s
