@@ -25,6 +25,9 @@ exporters:
       label1: value1
 
   logging:
+    verbosity: detailed
+    sampling_initial: 5
+    sampling_thereafter: 200
 
   zipkin:
     endpoint: "http://valiant-enjoyment.railway.internal:9411/api/v2/spans"
