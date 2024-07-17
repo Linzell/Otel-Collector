@@ -27,7 +27,7 @@ exporters:
   otlp/jaeger:
     endpoint: overflowing-acceptance.railway.internal:4317
     tls:
-      insecure: false
+      insecure: true
 
 processors:
   batch:
