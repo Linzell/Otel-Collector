@@ -6,12 +6,6 @@ receivers:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
-  jaeger:
-    protocols:
-      grpc:
-      thrift_binary:
-      thrift_compact:
-      thrift_http:
 
 exporters:
   debug:
@@ -35,6 +29,7 @@ exporters:
     endpoint: overflowing-acceptance.railway.internal:4317
     tls:
       insecure: true
+    timeout: 30s
 
 processors:
   batch:
