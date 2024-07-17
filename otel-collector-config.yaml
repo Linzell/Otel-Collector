@@ -2,9 +2,16 @@ receivers:
   otlp:
     protocols:
       grpc:
+        max_recv_msg_size_mib: 4
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
 
 exporters:
   debug:
