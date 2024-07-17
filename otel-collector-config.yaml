@@ -7,6 +7,11 @@ receivers:
       http:
         endpoint: 0.0.0.0:4318
 
+processors:
+  batch:
+    send_batch_size: 10000
+    timeout: 200ms
+
 exporters:
   debug:
     verbosity: detailed
@@ -30,12 +35,18 @@ exporters:
     tls:
       insecure: true
     timeout: 30s
-
-processors:
-  batch:
+    sending_queue:
+      enabled: true
+      num_consumers: 10
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
 
 extensions:
   health_check:
+    endpoint: :13133
   pprof:
     endpoint: :1888
   zpages:
