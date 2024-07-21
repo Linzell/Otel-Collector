@@ -22,8 +22,6 @@ exporters:
     endpoint: "0.0.0.0:8889"
     const_labels:
       label1: value1
-    target_info:
-      enabled: true
 
   logging:
     verbosity: detailed
@@ -39,7 +37,7 @@ exporters:
 
 connectors:
   spanmetrics:
-    namespace: span.metrics
+    metrics:
 
 extensions:
   health_check:
