@@ -27,7 +27,7 @@ exporters:
     verbosity: detailed
 
   zipkin:
-    endpoint: http://valiant-enjoyment.railway.internal:9411/api/v2/spans
+    endpoint: "http://valiant-enjoyment.railway.internal:9411/api/v2/spans"
     format: proto
 
   otlp/jaeger:
