@@ -8,6 +8,8 @@ receivers:
 
 processors:
   batch:
+    spanmetrics:
+      metrics_exporter: prometheus
 
 exporters:
   debug:
@@ -35,9 +37,6 @@ exporters:
     tls:
       insecure: true
 
-connectors:
-  spanmetrics:
-
 extensions:
   health_check:
     endpoint: :13133
@@ -51,8 +50,8 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [logging, zipkin, otlp/jaeger, spanmetrics, debug]
+      processors: [batch, spanmetrics]
+      exporters: [logging, zipkin, otlp/jaeger, debug]
     metrics:
       receivers: [otlp]
       processors: [batch]
