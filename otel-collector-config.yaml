@@ -35,10 +35,6 @@ exporters:
     tls:
       insecure: true
 
-connectors:
-  spanmetrics:
-    metrics_exporter: prometheus
-
 extensions:
   health_check:
     endpoint: :13133
