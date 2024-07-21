@@ -4,8 +4,12 @@ receivers:
       grpc:
         max_recv_msg_size_mib: 4
         endpoint: 0.0.0.0:4317
+        tls:
+          insecure: true
       http:
         endpoint: 0.0.0.0:4318
+        tls:
+          insecure: true
 
 processors:
   batch:
@@ -67,3 +71,7 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, debug]
+
+telemetry:
+  logs:
+    level: "debug"
