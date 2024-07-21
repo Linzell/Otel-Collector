@@ -10,6 +10,9 @@ processors:
   batch:
 
 exporters:
+  debug:
+    verbosity: detailed
+
   otlp:
     endpoint: opentelemetry-collector-stack.railway.internal:4317
     tls:
@@ -21,7 +24,7 @@ exporters:
       label1: value1
 
   logging:
-    verbosity: debug
+    verbosity: detailed
 
   zipkin:
     endpoint: "http://valiant-enjoyment.railway.internal:9411/api/v2/spans"
