@@ -71,7 +71,3 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, debug]
-
-telemetry:
-  logs:
-    level: "debug"
