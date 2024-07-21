@@ -8,8 +8,6 @@ receivers:
 
 processors:
   batch:
-    spanmetrics:
-      metrics_exporter: prometheus
 
 exporters:
   debug:
@@ -36,6 +34,10 @@ exporters:
     endpoint: overflowing-acceptance.railway.internal:4317
     tls:
       insecure: true
+
+connectors:
+  spanmetrics:
+    metrics_exporter: prometheus
 
 extensions:
   health_check:
