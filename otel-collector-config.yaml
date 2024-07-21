@@ -2,23 +2,18 @@ receivers:
   otlp:
     protocols:
       grpc:
-        max_recv_msg_size_mib: 4
         endpoint: 0.0.0.0:4317
-        tls:
-          insecure: true
       http:
         endpoint: 0.0.0.0:4318
-        tls:
-          insecure: true
 
 processors:
   batch:
-    send_batch_size: 10000
-    timeout: 200ms
 
 exporters:
-  debug:
-    verbosity: detailed
+  otlp:
+    endpoint: opentelemetry-collector-stack.railway.internal:4317
+    tls:
+      insecure: true
 
   prometheus:
     endpoint: "0.0.0.0:8889"
@@ -26,9 +21,7 @@ exporters:
       label1: value1
 
   logging:
-    verbosity: detailed
-    sampling_initial: 5
-    sampling_thereafter: 200
+    verbosity: debug
 
   zipkin:
     endpoint: "http://valiant-enjoyment.railway.internal:9411/api/v2/spans"
@@ -38,15 +31,6 @@ exporters:
     endpoint: overflowing-acceptance.railway.internal:4317
     tls:
       insecure: true
-    timeout: 30s
-    sending_queue:
-      enabled: true
-      num_consumers: 10
-    retry_on_failure:
-      enabled: true
-      initial_interval: 5s
-      max_interval: 30s
-      max_elapsed_time: 300s
 
 extensions:
   health_check:
