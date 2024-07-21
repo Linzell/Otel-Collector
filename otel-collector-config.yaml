@@ -22,6 +22,8 @@ exporters:
     endpoint: "0.0.0.0:8889"
     const_labels:
       label1: value1
+    target_info:
+      enabled: true
 
   logging:
     verbosity: detailed
@@ -34,6 +36,10 @@ exporters:
     endpoint: overflowing-acceptance.railway.internal:4317
     tls:
       insecure: true
+
+connectors:
+  spanmetrics:
+    namespace: span.metrics
 
 extensions:
   health_check:
@@ -49,7 +55,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging, zipkin, otlp/jaeger, debug]
+      exporters: [logging, zipkin, otlp/jaeger, spanmetrics, debug]
     metrics:
       receivers: [otlp]
       processors: [batch]
