@@ -19,7 +19,7 @@ exporters:
       insecure: true
 
   prometheus:
-    endpoint: "0.0.0.0:8889"
+    endpoint: "http://railway-prometheus.railway.internal:8889"
     const_labels:
       label1: value1
 
