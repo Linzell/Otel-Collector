@@ -37,7 +37,6 @@ exporters:
 
 connectors:
   spanmetrics:
-    metrics:
 
 extensions:
   health_check:
