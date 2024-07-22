@@ -19,7 +19,7 @@ exporters:
       insecure: true
 
   prometheus:
-    endpoint: "0.0.0.0:8889"
+    endpoint: "railway-prometheus.railway.internal:8889"
     const_labels:
     resource_to_telemetry_conversion:
       enabled: true
